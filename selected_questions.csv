@@ -1,0 +1,8 @@
+question,subject,use,correct,responseA,responseB,responseC,responseD,remark
+Que signifie le sigle No-SQL ?,BDD,Test de positionnement,A,Pas seulement SQL,Pas de SQL,Pas tout SQL,,
+Cassandra et HBase sont des bases de données,BDD,Test de positionnement,C,relationnelles,orientées objet,orientées colonne,orientées graphe,
+MongoDB et CouchDB sont des bases de données,BDD,Test de positionnement,B,relationnelles,orientées objet,orientées colonne,orientées graphe,
+OrientDB et Neo4J sont des bases de données,BDD,Test de positionnement,D,relationnelles,orientées objet,orientées colonne,orientées graphe,
+"Pour indexer des données textuelles, je peux utiliser",BDD,Test de positionnement,A,ElasticSearch,Neo4J,MySQL,,
+A quoi faire attention lorsqu'on choisit un système de base de données ?,BDD,Test de positionnement,D,La définition d'un schéma,La rapidité de lecture/écriture,La différenciation des accés,Tous ces points,
+Nouvelle question,BDD,Test de positionnement,A,Réponse A,Réponse B,Réponse C,Réponse D,

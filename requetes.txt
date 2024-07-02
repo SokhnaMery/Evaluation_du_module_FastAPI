@@ -1,0 +1,82 @@
+requests:
+	Vérifier que l'API est fonctionnelle :La méthode Méthode : GET en utilisant l’url: http://127.0.0.1:8000/ 
+curl -X GET http://127.0.0.1:8000/
+
+ Request pour afficher les questions:
+curl -X 'GET'   'http://127.0.0.1:8000/questions/?use=Test%20de%20positionnement&question_count=10&subjects=BDD'   -u admin:4dm1N   -H 'accept: application/json'
+ renvoi la réponse suivante (la reponse est enregsitre dans le fichier selected_questions.csv): 
+ {"questions":[{"question":"Que signifie le sigle No-SQL ?","subject":"BDD","use":"Test de positionnement","correct":"A","responseA":"Pas seulement SQL","responseB":"Pas de SQL",
+ "responseC":"Pas tout SQL","responseD":"","remark":""},{"question":"Cassandra et HBase sont des bases de données","subject":"BDD","use":"Test de positionnement","correct":"C","responseA":"relationnelles",
+ "responseB":"orientées objet","responseC":"orientées colonne","responseD":"orientées graphe","remark":""},{"question":"MongoDB et CouchDB sont des bases de données","subject":"BDD","use":"Test de positionnement",
+ "correct":"B","responseA":"relationnelles","responseB":"orientées objet","responseC":"orientées colonne","responseD":"orientées graphe","remark":""},{"question":"OrientDB et Neo4J sont des bases de données",
+ "subject":"BDD","use":"Test de positionnement","correct":"D","responseA":"relationnelles","responseB":"orientées objet","responseC":"orientées colonne","responseD":"orientées graphe","remark":""},{"question":"Pour indexer des données textuelles, 
+ je peux utiliser","subject":"BDD","use":"Test de positionnement","correct":"A","responseA":"ElasticSearch","responseB":"Neo4J","responseC":"MySQL","responseD":"","remark":""},{"question":"A quoi faire attention lorsqu'on choisit un système de base de données ?",
+ "subject":"BDD","use":"Test de positionnement","correct":"D","responseA":"La définition d'un schéma","responseB":"La rapidité de lecture/écriture","responseC":"La différenciation des accés","responseD":"Tous ces points","remark":""},{"question":"Nouvelle question",
+ 
+"subject":"BDD","use":"Test de positionnement","correct":"A","responseA":"Réponse A","responseB":"Réponse B","responseC":"Réponse C","responseD":"Réponse D"}]}
+
+Request pour creer une question par admin, fonctionne bien et renvoi le message suivant (la reponse est enregistre par exemple dans un fichier new_questions.csv): 
+{"message":"Question created successfully"}
+curl -X POST 'http://127.0.0.1:8000/questions/' -u admin:4dm1N -H 'Content-Type: application/json' -d '{
+    "question": "Nouvelle question?",
+    "subject": "math",
+    "use": "test",
+    "correct": "A",
+    "responseA": "Réponse A",
+    "responseB": "Réponse B",
+    "responseC": "Réponse C",
+    "responseD": "Réponse D"
+}'
+
+curl -X POST 'http://127.0.0.1:8000/questions/' \
+  -u admin:4dm1N \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "question": "Nouvelle question?",
+    "subject": "math",
+    "use": "test",
+    "correct": "A",
+    "responseA": "Réponse A",
+    "responseB": "Réponse B",
+    "responseC": "Réponse C",
+    "responseD": "Réponse D"
+  }'
+
+curl -X POST "http://127.0.0.1:8000/questions/" -u admin:4dm1N -H "Content-Type: application/json" -d '{
+  "question": "Nouvelle question",
+  "subject": "BDD",
+  "use": "Test de positionnement",
+  "correct": "A",
+  "responseA": "Réponse A",
+  "responseB": "Réponse B",
+  "responseC": "Réponse C",
+  "responseD": "Réponse D",
+  "remark": "Remarque"
+}'
+
+	Cas ou le request ne marche pas et renvoi la réponse suivante: {"detail":"Only admin can create questions"}
+curl -X POST 'http://127.0.0.1:8000/questions/'   -u alice:wonderland   -H 'Content-Type: application/json'   -d '{
+    "question": "Nouvelle question?",
+    "subject": "math",
+    "use": "test",
+    "correct": "A",
+    "responseA": "Réponse A",
+    "responseB": "Réponse B",
+    "responseC": "Réponse C",
+    "responseD": "Réponse D"
+  }'
+
+test avec identifiant non admin(pas de permission): 
+curl -X POST 'http://127.0.0.1:8000/questions/' \
+  -u alice:wonderland \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "question": "Nouvelle question?",
+    "subject": "math",
+    "use": "test",
+    "correct": "A",
+    "responseA": "Réponse A",
+    "responseB": "Réponse B",
+    "responseC": "Réponse C",
+    "responseD": "Réponse D"
+  }'
